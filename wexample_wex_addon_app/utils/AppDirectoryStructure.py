@@ -15,20 +15,21 @@ class AppDirectoryStructure(Workdir):
 
     def build_setup_config(self, config: Optional[StateItemConfig] = None) -> StateItemConfig:
         config = super().build_setup_config(config)
+        children = config["children"]
 
-        config["children"].append({
+        children.append({
             "name": APP_FILE_APP_CONFIG,
             "type": DiskItemType.FILE,
             "should_exist": True
         })
 
-        config["children"].append({
+        children.append({
             "name": APP_FILE_APP_ENV,
             "type": DiskItemType.DIRECTORY,
             "should_exist": True,
         })
 
-        config["children"].append({
+        children.append({
             "name": "tmp",
             "type": DiskItemType.DIRECTORY,
             "should_exist": True
