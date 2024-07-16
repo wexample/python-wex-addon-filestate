@@ -21,6 +21,13 @@ class AppDirectoryStructure(Workdir):
             "default_content": f"# Readme"
         })
 
+        children.append({
+            "name": 'version.txt',
+            "type": DiskItemType.FILE,
+            "should_exist": True,
+            "default_content": f"0.0.1"
+        })
+
         return config or {}
 
     def build_setup_config(self, config: Optional[StateItemConfig] = None) -> StateItemConfig:
