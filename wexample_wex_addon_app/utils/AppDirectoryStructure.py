@@ -1,11 +1,18 @@
+import os
+
 from wexample_filestate.const.enums import DiskItemType
 from wexample_filestate.const.types import StateItemConfig
+from wexample_filestate.options_values.content_filter.trim_content_filter import TrimContentFilter
+from wexample_filestate.options_values.content_option_value import ContentOptionValue
+from wexample_filestate.options_values.templates_aggregation_content_option_value import \
+    TemplatesAggregationContentOptionValue
 from wexample_helpers.const.types import *
 
 from wexample_wex_addon_app.const.globals import (
     APP_FILE_APP_CONFIG,
     APP_FILE_APP_ENV,
 )
+from wexample_wex_core.const.globals import WORKDIR_SETUP_DIR
 from wexample_wex_core.utils.workdir import Workdir
 
 
@@ -18,14 +25,16 @@ class AppDirectoryStructure(Workdir):
             "name": 'README.md',
             "type": DiskItemType.FILE,
             "should_exist": True,
-            "default_content": f"# Readme"
+            "default_content": TemplatesAggregationContentOptionValue(
+                templates_dir_path=f"{WORKDIR_SETUP_DIR}/templates/README.md/"),
         })
 
         children.append({
             "name": 'version.txt',
             "type": DiskItemType.FILE,
             "should_exist": True,
-            "default_content": f"0.0.1"
+            "default_content": f"0.0.1",
+            "content": ContentOptionValue(filters=[TrimContentFilter()])
         })
 
         return config or {}
