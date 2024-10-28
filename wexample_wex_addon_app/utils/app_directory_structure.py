@@ -10,7 +10,7 @@ from wexample_wex_addon_app.const.globals import (
     APP_FILE_APP_CONFIG,
     APP_FILE_APP_ENV,
 )
-from wexample_wex_addon_app.options_values.readme_content_option_value import ReadmeContentOptionValue
+from wexample_filestate.config_values.readme_content_option_value import ReadmeContentConfigValue
 from wexample_wex_core.utils.workdir import Workdir
 
 
@@ -23,7 +23,7 @@ class AppDirectoryStructure(Workdir):
             "name": 'README.md',
             "type": DiskItemType.FILE,
             "should_exist": True,
-            "default_content": ReadmeContentOptionValue(
+            "default_content": ReadmeContentConfigValue(
                 templates=[],
                 parameters={}
             ),
