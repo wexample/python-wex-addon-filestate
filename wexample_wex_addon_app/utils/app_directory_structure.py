@@ -1,22 +1,25 @@
-import os
-
-from wexample_filestate.const.enums import DiskItemType
-from wexample_filestate.const.types import StateItemConfig
-from wexample_filestate.options_values.content_filter.trim_content_filter import TrimContentFilter
-from wexample_filestate.options_values.content_option_value import ContentOptionValue
+from wexample_config.const.types import DictConfig
+from wexample_filestate.config_value.readme_content_option_value import ReadmeContentConfigValue
+from wexample_filestate.const.disk import DiskItemType
 from wexample_helpers.const.types import *
 
 from wexample_wex_addon_app.const.globals import (
     APP_FILE_APP_CONFIG,
     APP_FILE_APP_ENV,
 )
-from wexample_filestate.config_values.readme_content_option_value import ReadmeContentConfigValue
 from wexample_wex_core.utils.workdir import Workdir
 
 
 class AppDirectoryStructure(Workdir):
-    def build_config(self, config: Optional[StateItemConfig] = None) -> StateItemConfig:
-        config = super().build_config(config)
+    def prepare_value(self, config: Optional[DictConfig] = None) -> DictConfig:
+        from wexample_config.config_value.filter.trim_config_value_filter import TrimConfigValueFilter
+
+        config = super().prepare_value(config)
+
+        config.update({
+            "mode": "777",
+        })
+
         children = config["children"]
 
         children.append({
@@ -34,31 +37,32 @@ class AppDirectoryStructure(Workdir):
             "type": DiskItemType.FILE,
             "should_exist": True,
             "default_content": f"0.0.1",
-            "content": ContentOptionValue(filters=[TrimContentFilter()])
+            "content_filter": TrimConfigValueFilter
         })
 
-        return config or {}
-
-    def build_setup_config(self, config: Optional[StateItemConfig] = None) -> StateItemConfig:
-        config = super().build_setup_config(config)
-        children = config["children"]
-
         children.append({
-            "name": APP_FILE_APP_CONFIG,
+            "name": '.gitignore',
             "type": DiskItemType.FILE,
-            "should_exist": True
+            "should_exist": True,
+            "content_filter": TrimConfigValueFilter
         })
 
         children.append({
             "name": APP_FILE_APP_ENV,
             "type": DiskItemType.DIRECTORY,
             "should_exist": True,
-        })
-
-        children.append({
-            "name": "tmp",
-            "type": DiskItemType.DIRECTORY,
-            "should_exist": True
+            "children": [
+                {
+                    "name": APP_FILE_APP_CONFIG,
+                    "type": DiskItemType.FILE,
+                    "should_exist": True
+                },
+                {
+                    "name": "tmp",
+                    "type": DiskItemType.DIRECTORY,
+                    "should_exist": True
+                }
+            ]
         })
 
         return config
