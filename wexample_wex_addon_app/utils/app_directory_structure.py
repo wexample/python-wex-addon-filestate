@@ -15,8 +15,8 @@ from wexample_wex_core.utils.workdir import Workdir
 
 
 class AppDirectoryStructure(Workdir):
-    def build_config(self, config: Optional[StateItemConfig] = None) -> StateItemConfig:
-        config = super().build_config(config)
+    def prepare_value(self, config: Optional[StateItemConfig] = None) -> StateItemConfig:
+        config = super().prepare_value(config)
         children = config["children"]
 
         children.append({
