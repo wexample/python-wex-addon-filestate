@@ -18,6 +18,7 @@ class AppDirectoryStructure(Workdir):
 
         config.update({
             "mode": "777",
+            "mode_recursive": True,
         })
 
         children = config["children"]
