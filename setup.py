@@ -16,7 +16,7 @@ setup(
         'Operating System :: OS Independent',
     ],
     install_requires=[
-        "wexample-app"
+        'wexample-wex-core',
     ],
     python_requires='>=3.6',
 )
