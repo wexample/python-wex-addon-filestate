@@ -5,7 +5,7 @@ from wexample_helpers.const.types import *
 
 from wexample_wex_addon_app.const.globals import (
     APP_FILE_APP_CONFIG,
-    APP_FILE_APP_ENV,
+    APP_FILE_APP_ENV, APP_DIR_APP_DATA_NAME,
 )
 from wexample_wex_core.utils.workdir import Workdir
 
@@ -49,10 +49,15 @@ class AppDirectoryStructure(Workdir):
         })
 
         children.append({
-            "name": APP_FILE_APP_ENV,
+            "name": APP_DIR_APP_DATA_NAME,
             "type": DiskItemType.DIRECTORY,
             "should_exist": True,
             "children": [
+                {
+                    "name": APP_FILE_APP_ENV,
+                    "type": DiskItemType.FILE,
+                    "should_exist": True
+                },
                 {
                     "name": APP_FILE_APP_CONFIG,
                     "type": DiskItemType.FILE,
