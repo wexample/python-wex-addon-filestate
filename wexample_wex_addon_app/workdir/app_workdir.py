@@ -1,6 +1,6 @@
 from wexample_config.const.types import DictConfig
-from wexample_filestate.config_value.readme_content_option_value import ReadmeContentConfigValue
 from wexample_filestate.const.disk import DiskItemType
+from wexample_filestate_dev.workdir.mixins.with_readme_workdir_mixin import WithReadmeWorkdirMixin
 from wexample_helpers.const.types import *
 
 from wexample_wex_addon_app.const.globals import (
@@ -10,7 +10,7 @@ from wexample_wex_addon_app.const.globals import (
 from wexample_wex_core.common.workdir import Workdir
 
 
-class AppWorkdir(Workdir):
+class AppWorkdir(WithReadmeWorkdirMixin, Workdir):
     def prepare_value(self, config: Optional[DictConfig] = None) -> DictConfig:
         from wexample_config.config_value.filter.trim_config_value_filter import TrimConfigValueFilter
 
@@ -23,15 +23,10 @@ class AppWorkdir(Workdir):
 
         children = config["children"]
 
-        children.append({
-            "name": 'README.md',
-            "type": DiskItemType.FILE,
-            "should_exist": True,
-            "default_content": ReadmeContentConfigValue(
-                templates=[],
-                parameters={}
-            ),
-        })
+        WithReadmeWorkdirMixin.append_readme(
+            self,
+            config=config
+        )
 
         children.append({
             "name": 'version.txt',
