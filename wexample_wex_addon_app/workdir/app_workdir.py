@@ -1,6 +1,7 @@
 from wexample_config.const.types import DictConfig
 from wexample_filestate.const.disk import DiskItemType
 from wexample_filestate_dev.workdir.mixins.with_readme_workdir_mixin import WithReadmeWorkdirMixin
+from wexample_filestate_dev.workdir.mixins.with_version_workdir_mixin import WithVersionWorkdirMixin
 from wexample_helpers.const.types import *
 
 from wexample_wex_addon_app.const.globals import (
@@ -10,7 +11,7 @@ from wexample_wex_addon_app.const.globals import (
 from wexample_wex_core.common.workdir import Workdir
 
 
-class AppWorkdir(WithReadmeWorkdirMixin, Workdir):
+class AppWorkdir(WithReadmeWorkdirMixin, WithVersionWorkdirMixin, Workdir):
     def prepare_value(self, config: Optional[DictConfig] = None) -> DictConfig:
         from wexample_config.config_value.filter.trim_config_value_filter import TrimConfigValueFilter
 
@@ -23,18 +24,8 @@ class AppWorkdir(WithReadmeWorkdirMixin, Workdir):
 
         children = config["children"]
 
-        WithReadmeWorkdirMixin.append_readme(
-            self,
-            config=config
-        )
-
-        children.append({
-            "name": 'version.txt',
-            "type": DiskItemType.FILE,
-            "should_exist": True,
-            "default_content": f"0.0.1",
-            "content_filter": TrimConfigValueFilter
-        })
+        self.append_readme(config=config)
+        self.append_version(config=config)
 
         children.append({
             "name": '.gitignore',
