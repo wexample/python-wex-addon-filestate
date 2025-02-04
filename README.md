@@ -2,7 +2,7 @@
 
 App management with wex
 
-Version: 0.0.22
+Version: 0.0.23
 
 ## Requirements
 
@@ -13,7 +13,7 @@ Version: 0.0.22
 - pip-tools
 - pydantic
 - pytest
-- wexample-wex-core==6.0.23
+- wexample-wex-core==6.0.24
 
 ## Installation
 
