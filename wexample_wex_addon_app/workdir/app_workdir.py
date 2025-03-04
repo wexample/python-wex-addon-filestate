@@ -8,7 +8,7 @@ from wexample_wex_addon_app.const.globals import (
     APP_FILE_APP_CONFIG,
     APP_FILE_APP_ENV, APP_DIR_APP_DATA_NAME,
 )
-from wexample_wex_core.common.workdir import Workdir
+from wexample_wex_core.workdir.workdir import Workdir
 
 
 class AppWorkdir(WithReadmeWorkdirMixin, WithVersionWorkdirMixin, Workdir):
