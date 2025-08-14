@@ -6,7 +6,7 @@ requires = [
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "wexample-wex-addon-app"
+name = "wexample-wex-addon-filestate"
 version = "0.0.38"
 description = "App management with wex"
 authors = [

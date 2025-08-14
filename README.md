@@ -18,7 +18,7 @@ Version: 0.0.24
 ## Installation
 
 ```bash
-pip install wexample-wex-addon-app
+pip install wexample-wex-addon-filestate
 ```
 
 ## Links
