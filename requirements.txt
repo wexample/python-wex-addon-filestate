@@ -105,7 +105,7 @@ wexample-helpers-yaml==0.0.64
     # via wexample-app
 wexample-prompt==0.0.43
     # via wexample-filestate
-wexample-wex-core==6.0.39
+wexample-wex-core==6.0.40
     # via -r requirements.in
 wheel==0.45.1
     # via pip-tools
