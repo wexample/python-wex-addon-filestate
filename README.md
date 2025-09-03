@@ -2,7 +2,7 @@
 
 App management with wex
 
-Version: 0.0.3
+Version: 0.0.4
 
 ## Requirements
 
@@ -11,7 +11,7 @@ Version: 0.0.3
 ## Dependencies
 
 - pydantic>=2,<3
-- wexample-wex-core==6.0.43
+- wexample-wex-core==6.0.44
 
 ## Installation
 
