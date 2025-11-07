@@ -4,7 +4,7 @@ build-backend = "pdm.backend"
 
 [project]
 name = "wexample-wex-addon-filestate"
-version = "0.0.11"
+version = "0.0.13"
 description = "App management with wex"
 authors = [{name = "weeger", email = "contact@wexample.com"}]
 requires-python = ">=3.10"
@@ -12,7 +12,7 @@ classifiers = ["Programming Language :: Python :: 3", "License :: OSI Approved :
 dependencies = [
     "attrs>=23.1.0",
     "cattrs>=23.1.0",
-    "wexample-wex-core==6.0.55",
+    "wexample-wex-core==6.0.63",
 ]
 
 [project.readme]
@@ -31,6 +31,10 @@ dev = [
     "pytest-cov",
 ]
 
+[tool.setuptools.packages.find]
+include = ["*"]
+exclude = ["wexample_wex_addon_filestate.testing*"]
+
 [tool.pdm]
 distribution = true
 
@@ -40,6 +44,14 @@ package-dir = "src"
 [[tool.pdm.build.packages]]
 include = "wexample_wex_addon_filestate"
 from = "src"
-[tool.setuptools.packages.find]
-include = ["*"]
-exclude = ["wexample_wex_addon_filestate.testing*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+
+[tool.coverage.run]
+source = ["wexample_wex_addon_filestate"]
+omit = ["*/tests/*", "*/.venv/*", "*/venv/*"]
+
+[tool.coverage.report]
+exclude_lines = ["pragma: no cover", "def __repr__", "raise AssertionError", "raise NotImplementedError", "if __name__ == .__main__.:", "if TYPE_CHECKING:", "@abstractmethod"]
