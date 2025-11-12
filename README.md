@@ -1,6 +1,6 @@
 # wexample-wex-addon-filestate
 
-Version: 0.0.11
+Version: 0.0.13
 
 App management with wex
 
@@ -19,7 +19,7 @@ First, install the required testing dependencies:
 
 Run all tests with coverage:
 ```bash
-.venv/bin/python -m pytest --cov
+.venv/bin/python -m pytest --cov --cov-report=html
 ```
 
 ### Common Commands
