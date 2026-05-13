@@ -1,6 +1,6 @@
 # wex_addon_filestate
 
-Version: 6.0.28
+Version: 6.0.29
 
 App management with wex
 
@@ -82,7 +82,7 @@ Visit the [Wexample Suite documentation](https://docs.wexample.com) for the comp
 
 - attrs: >=23.1.0
 - cattrs: >=23.1.0
-- wexample-wex-core: >=20.1.0
+- wexample-wex-core: >=20.2.0
 
 ## Versioning & Compatibility Policy
 
