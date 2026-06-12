@@ -1,6 +1,6 @@
 # wex_addon_filestate
 
-Version: 6.2.13
+Version: 6.2.14
 
 App management with wex
 
